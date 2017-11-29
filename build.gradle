@@ -1,0 +1,23 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'application'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    jcenter()
+}
+
+dependencies {
+    ['armeria'].each {
+        compile "com.linecorp.armeria:${it}:0.55.0"
+    }
+    compile 'com.linecorp.centraldogma:centraldogma-client:0.18.0'
+}
+
+// Require Java 8 to build the project.
+tasks.withType(JavaCompile) {
+    sourceCompatibility '1.8'
+    targetCompatibility '1.8'
+}
+mainClassName = 'App'
